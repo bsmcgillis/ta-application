@@ -1,0 +1,32 @@
+<div data-ng-submit="submitLogin()">
+	<form novalidate name="loginForm">
+		<div class="row">
+			<div ng-show="loginError">
+				<div class="bg-danger col-lg-4" ng-cloak>{{ loginError }}</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-4">
+				<label>Email</label>
+				<input type="email" class="form-control" name="email" data-ng-model="user.email" 
+					ng-keyup="submitted=false" required><br />
+			</div>
+			<div ng-messages="loginForm.email.$error" class="text-danger" ng-if="submitted">
+				<div ng-message="required">*Email is required</div>
+				<div ng-message="email">*Email is invalid</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-4">
+				<label>Password</label>
+				<input type="password" class="form-control" name="password" data-ng-model="user.password" 
+					ng-keyup="submitted=false" required><br />
+			</div>
+			<div ng-messages="loginForm.email.$error" class="text-danger" ng-if="submitted">
+				<div ng-message="required">*Password is required</div>
+			</div>
+		</div>
+		<button type="submit" id="submit" class="btn btn-primary" ng-click="submitted=true" value="submit">Log In
+		</button>
+	</form>
+</div>

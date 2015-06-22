@@ -1,0 +1,31 @@
+<h2 class="text-center">Application Status</h2>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Class Number</th>
+			<th>Class Name</th>
+			<th>Date</th>
+			<th>Status</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="application in applications">
+			<td>{{ application.requested_course }}</td>
+			<td>{{ application.name }}</td>
+			<td>{{ application.created_at | date:'MMM dd, yyyy'}}</td>
+			<td class="text-success" ng-show="application.recommendation_level==4" ng-cloak>Confirmed</td>
+			<td class="text-warning" ng-show="application.recommendation_level!=4" ng-cloak>Pending</td>
+			<td ng-show="application.recommendation_level!=4">
+				<a href="#/app_show/{{ application.id }}"><span class="glyphicon glyphicon-pencil"></span></a>
+			</td>
+			<td ng-show="application.recommendation_level==4">
+				<span class="glyphicon glyphicon-pencil gray"
+			</td>
+			<td class="btn btn-xs btn-hover btn-danger" ng-click="deleteApp(application.id)">
+				<span class="glyphicon glyphicon-trash delete"></span></td>
+		</tr>
+	</tbody>
+</table>

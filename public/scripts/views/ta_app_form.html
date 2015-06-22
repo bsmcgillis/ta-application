@@ -1,0 +1,251 @@
+<h2 class="text-center">TA Application Form</h2>
+<div class="well well-sm">
+<h3 class="text-center">Teaching Assistant Requirements</h3>
+<div class="row">
+	<div class="col-lg-1">
+	</div>
+	<div class="col-lg-10">
+		<ol>
+			<li>
+				TAs are expected to spend 20 hours per week on TA duties. Students who are TAing should plan to take a lighter load than normal. This is especially true for students new to the University of Utah.<br /><br />
+				TAs must allocate enough time to properly prepare for office hours, including pre-reading and pre-doing the course assignments. When in charge of a discussion section, TAs will be expected to pre-prepare and practice their discussion.<br /><br />
+				TAs will be expected to finish assigned grading promptly and accurately within 7 days of the due date. <em>Grading takes priority over other academic endeavors.</em>
+			</li>
+			<li>
+				TAs are expected to be in town the week before school starts.
+			</li>
+			<li>
+				And so on.
+			</li>
+		</ol>
+	</div>
+	<div class="col-lg-1">
+	</div>
+</div>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-heading">
+	<h3 class="panel-title text-center">Application</h3>
+</div>
+<div class="panel-body">
+	<div data-ng-submit="submitApp()">
+		<form novalidate name="applicationForm">
+			<div class="row">
+				<div class="col-lg-1">
+				</div>
+				<div class="form-group col-lg-6">
+					<p>
+						Please select the semester for which would you like to be considered for a TA position.
+					</p>
+				</div>
+				<div class="form-group col-lg-3">
+					<select name="semester_select" id="semester_select" ng-model="application.selected_semester" 
+						ng-options="semester.semester for semester in semesters" required>
+						<option value="">Choose a Semester</option>
+					</select>
+				</div>
+				<div ng-messages="applicationForm.semester_select.$error" class="text-danger" ng-if="submitted">
+					<div ng-message="required">*Please select a semester</div>
+				</div>
+				<div class="col-lg-2">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-1">
+				</div>
+				<div class="form-group col-lg-6">
+					<p>
+						Please select the year for which would you like to be considered for a TA position.
+					</p>
+				</div>
+				<div class="form-group col-lg-3">
+					<select name="year_select" id="year_select" ng-model="application.selected_year"
+						ng-options="year.year for year in years" required>
+						<option value="">Choose a Year</option>
+					</select>
+				</div>
+				<div ng-messages="applicationForm.year_select.$error" class="text-danger" ng-if="submitted">
+					<div ng-message="required">*Please select a year</div>
+				</div>
+				<div class="col-lg-2">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-1">
+				</div>
+				<div class="form-group col-lg-6">
+					<p>
+						Please confirm your UID.
+					</p>
+				</div>
+				<div class="form-group col-lg-3">
+					<input type="text" class="form-control" name="student_uid" id="student_uid" 
+						ng-keyup="submitted=false" ng-model="application.student_uid" value="uid" required />
+				</div>
+				<div ng-messages="applicationForm.student_uid.$error" class="text-danger" ng-if="submitted">
+					<div ng-message="required">*Please enter your UID</div>
+				</div>
+				<div class="col-lg-2">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-1">
+				</div>
+				<div class="form-group col-lg-6">
+					<p>
+						Please select your student enrollment type.<br />
+						(Note: Graduate students are hired to work 20 hours a week. In general, undergraduate students are also expected to work 20 hours a week.)
+					</p>
+				</div>
+				<div class="form-group col-lg-3">
+					<select name="student_type_select" id="student_type_select" 
+						ng-model="application.selected_student_type"
+						ng-options="student_type.stuType for student_type in student_types" required>
+						<option value="">Choose an Enrollment Type</option>
+					</select>
+				</div>
+				<div ng-messages="applicationForm.student_type_select.$error" class="text-danger" ng-if="submitted">
+					<div ng-message="required">*Please select an enrollment type</div>
+				</div>
+				<div class="col-lg-2">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-1">
+				</div>
+				<div class="form-group col-lg-6">
+					<p>
+						Please select the course for which you would like to be a TA.<br />
+						Please select the courses below that you would like to TA for (and feel qualified to TA for). In general, you are expected to have taken a course before you can TA for it. Please consult the class schedule to make sure you can attend the lecture and labs associated with a course before selecting it.						
+					</p>
+				</div>
+				<div ng-show="edit" class="form-group col-lg-3">
+					<input type="text" class="form-control" name="course_select" id="course_select" 
+						ng-model="application.selected_course" ng-readonly=true />
+				</div>
+				<div ng-show="!edit" class="form-group col-lg-3">
+					<select name="course_select" id="course_select" ng-model="application.selected_course"
+						ng-options="course as course.number + ' - ' + course.name for course in courses" required>
+						<option value="">Choose a course</option>
+					</select>
+				</div>
+				<div ng-show="!edit" ng-messages="applicationForm.course_select.$error" class="text-danger" 
+					ng-if="submitted">
+					<div ng-message="required">*Please select a course</div>
+				</div>
+				<div class="col-lg-2">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-1">
+				</div>
+				<div class="form-group col-lg-6">
+					<p>
+						Please provide any additional details to be considered during your evaluation.<br />
+						Please include a paragraph or two describing:
+					</p>
+
+					<ol>
+						<li>
+							The strengths and abilities you would bring to the job.
+						</li>
+						<li>
+							What programming languages and tools you are familiar with.
+						</li>
+						<li>
+							Any past experience not described above.
+						</li>
+						<li>
+							Any recommendations from faculty asking for you specifically as a TA.
+						</li>
+						<li>
+							Any additional information you think would help us choose you as a TA.
+						</li>
+					</ol>
+
+					<p>
+						Additionally, please feel free to discuss any prior TA experience outside of the Computer Science department or the University of Utah. Just let us know some information about what you did and where you did it.
+					</p>
+				</div>
+				<div class="form-group col-lg-3">
+					<textarea name="addit_info" id="addit_info" class="form-control app-textarea" row="20"
+						ng-model="application.addit_info" required>
+					</textarea>
+				</div>
+				<div ng-messages="applicationForm.addit_info.$error" class="text-danger" ng-if="submitted">
+					<div ng-message="required">*Please include some additional information</div>
+				</div>
+				<div class="col-lg-2">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-1">
+				</div>
+				<div class="form-group col-lg-6">
+					<p>
+						Are you an international student?
+					</p>
+				</div>
+				<div class="form-group col-lg-3">
+					<label>
+						<input type="radio" name="intl_student" id="intl_student_no"
+							ng-model="application.intl_student" value="No" ng-checked="true" />
+						No
+					</label>
+					<label>
+						<input type="radio" name="intl_student" id="intl_student_yes"
+							ng-model="application.intl_student" value="Yes"/>
+						Yes
+					</label>
+				</div>
+				<div class="col-lg-2">
+				</div>
+			</div>
+
+			<div class="row" ng-show="application.intl_student=='Yes'">
+				<div class="col-lg-1">
+				</div>
+				<div class="form-group col-lg-6">
+					<p>
+						Please enter your country of origin.
+					</p>
+				</div>
+				<div class="form-group col-lg-3">
+					<input type="text" class="form-control" name="origin_country" id="origin_country" 
+						ng-keyup="submitted=false" ng-model="application.country_origin" value="uid" 
+						ng-required="application.intl_student=='Yes'" />
+				</div>
+				<div ng-messages="applicationForm.origin_country.$error" class="text-danger" ng-if="submitted">
+					<div ng-message="required">*Please enter your country of origin</div>
+				</div>
+				<div class="col-lg-2">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-8">
+				</div>
+				<div class="col-lg-2">
+					<button ng-show="!edit" type="submit" id="submit" class="btn btn-primary" ng-click="submitted=true" 
+						value="submit">
+						Submit Application
+					</button>
+					<button ng-show="edit" type="submit" id="submit" class="btn btn-primary" 
+						ng-click="submitted=true; updateApp()">
+						Update Application
+					</button>
+				</div>
+				<div class="col-log-2">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</div>

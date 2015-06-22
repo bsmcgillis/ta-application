@@ -1,0 +1,65 @@
+<div data-ng-submit="submitRegistration()">
+	<form novalidate name="registrationForm">
+		<div class="row">
+			<div ng-show="registrationError">
+				<div class="bg-danger col-lg-4" ng-cloak>{{ registrationError }}</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-4">
+				<label>Name</label>
+				<input type="text" class="form-control" name="name" data-ng-model="registration.name" 
+					ng-keyup="submitted=false" required /><br />
+			</div>
+			<div ng-messages="registrationForm.name.$error" class="text-danger" ng-if="submitted">
+				<div ng-message="required">*Name is required</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-4">
+				<label>University ID</label>
+				<input type="text" class="form-control" name="uid" data-ng-model="registration.uid"
+					ng-keyup="submitted=false" ng-pattern="uidPattern" required /><br />
+			</div>
+			<div ng-messages="registrationForm.uid.$error" class="text-danger" ng-if="submitted">
+				<div ng-message="pattern">*University ID is invalid</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-4">
+				<label>Email</label>
+				<input type="email" class="form-control" name="email" data-ng-model="registration.email"
+					ng-keyup="submitted=false" required /><br />
+			</div>
+			<div ng-messages="registrationForm.email.$error" class="text-danger" ng-if="submitted">
+				<div ng-message="required">*Email is required</div>
+				<div ng-message="email">*Email is invalid</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-4">
+				<label>Password</label>
+				<input type="password" class="form-control" name="password" data-ng-model="registration.password"
+					ng-keyup="submitted=false" required /><br />
+			</div>
+			<div ng-messages="registrationForm.password.$error" class="text-danger" ng-if="submitted">
+				<div ng-message="required">*Password is required</div>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-4">
+				<label>Password Confirmation</label>
+				<input type="password" class="form-control" name="password_confirmation" 
+					data-ng-model="registration.password_confirmation" ng-keyup="submitted=false" required 
+					pass-confirmation="registration.password" /><br />
+			</div>
+			<div ng-messages="registrationForm.password_confirmation.$error" class="text-danger" ng-if="submitted">
+				<div ng-message="required">*Password confirmation is required</div>
+				<div ng-message="passConfirmation">*Passwords must match</div>
+			</div>
+		</div>
+		<button type="submit" id="submit" class="btn btn-primary" ng-click="submitted=true" value="submit">Register
+		</button>
+	</form>
+</div>
