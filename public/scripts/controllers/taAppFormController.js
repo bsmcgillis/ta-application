@@ -42,8 +42,7 @@
 
 				taApplicationFactory.postApplication($scope.application)
 					.success(function(response){
-						$rootScope.appCreationSuccess = response.message;
-						
+						$rootScope.appCreationSuccess = response.message;						
 						$location.path('/');
 					})
 					.error(function(data, status, headers, config){

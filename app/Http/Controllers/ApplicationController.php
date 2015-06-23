@@ -128,22 +128,45 @@ class ApplicationController extends Controller {
 	 */
 	public function update(UpdateApplicationRequest $request, $id)
 	{
-		$values = $request->only('recommendation_level');
+		if (! is_null($request->get('recommendation_level'))){
+			$values = $request->only('recommendation_level');
 
-		$application = Application::find($id);
+			$application = Application::find($id);
 
-		if (!$application){
-			Response::json(['message' => 'Application not found']);
+			if (!$application){
+				Response::json(['message' => 'Application not found']);
+			}
+
+			$application->recommendation_level = $request->get('recommendation_level');
+			$application->save();
+
+
+			return Response::json([
+				'message' => 'Application Updated', 
+				'new_rec_level' => $request->get('recommendation_level')
+				], 200);
 		}
+		else {
+			$application = Application::find($id);
 
-		$application->recommendation_level = $request->get('recommendation_level');
-		$application->save();
+			if (!$application){
+				Response::json(['message' => 'Application not found']);
+			}
 
+			$application->semester = $request->get('selected_semester');
+			$application->year = $request->get('selected_year');
+			$application->uid = $request->get('student_uid');
+			$application->student_type = $request->get('selected_student_type');
+			$application->requested_course = $request->get('selected_course');
+			$application->additional_details = $request->get('addit_info');
+			$application->international_student = $request->get('intl_student');
+			$application->origin_country = $request->get('country_origin');
+			$application->save();
 
-		return Response::json([
-			'message' => 'Application Updated', 
-			'new_rec_level' => $request->get('recommendation_level'
-		)], 200);
+			return Response::json([
+				'message' => 'Application Updated',				
+			], 200);
+		}
 	}
 
 	/**

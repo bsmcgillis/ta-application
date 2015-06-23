@@ -36,6 +36,10 @@
 			return $http.put('/ta_applications/' + applicationId, appUpdate);
 		};
 
+		factory.updateApplication = function(applicationId, appUpdate){
+			return $http.put('ta_applications/' + applicationId, appUpdate);
+		}
+
 		factory.deleteApplication = function(appId){
 			return $http.delete('/ta_applications/' + appId);
 		}
@@ -73,6 +77,9 @@
 			}
 			if ($rootScope.appCreationSuccess){
 				delete $rootScope.appCreationSuccess;
+			}
+			if ($rootScope.appUpdateSuccess){
+				delete $rootScope.appUpdateSuccess;
 			}
 		};
 

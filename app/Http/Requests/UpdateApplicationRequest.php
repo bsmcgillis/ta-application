@@ -21,9 +21,24 @@ class UpdateApplicationRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
-			'recommendation_level' => 'required'
-		];
+		if(! is_null(Request::get('recommendation_level')))
+		{
+			return [
+				'recommendation_level' => 'required'
+			];
+		}
+		else {
+			return [
+				'selected_semester' => 'required',
+				'selected_year' => 'required',
+				'student_uid' => 'required',
+				'selected_student_type' => 'required',
+				'selected_course' => 'required',
+				'addit_info' => 'required',
+				'intl_student' => 'required'
+			];
+		}
+
 	}
 
 }

@@ -41,6 +41,9 @@
 			<div ng-show="appCreationSuccess" class="bg-success col-lg-4" ng-cloak>
 				{{ appCreationSuccess }}
 			</div>
+			<div ng-show="appUpdateSuccess" class="bg-success col-lg-4" ng-cloak>
+				{{ appUpdateSuccess }}
+			</div>
 		</div>
 		<div>
 		<main>

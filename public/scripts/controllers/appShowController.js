@@ -1,6 +1,6 @@
 (function() {
 
-	var AppShowController = function($scope, $rootScope, taApplicationFactory, $routeParams) {
+	var AppShowController = function($scope, $rootScope, taApplicationFactory, $routeParams, $location) {
 
 		taApplicationFactory.clearSuccessInfo();
 		taApplicationFactory.updateRootScope();	
@@ -21,7 +21,8 @@
 				console.log(response);
 
 				data = response.data;
-				thisCourse = $scope.courses[taApplicationFactory.getValueIndex($scope.courses, data.requested_course, "course")];
+				$scope.thisAppId = data.id;
+				$scope.thisCourse = $scope.courses[taApplicationFactory.getValueIndex($scope.courses, data.requested_course, "course")];
 
 				$scope.application = {};
 				$scope.application.selected_semester = 
@@ -32,7 +33,7 @@
 					$scope.student_types[taApplicationFactory
 					.getValueIndex($scope.student_types, data.student_type, "student_type")];					
 				$scope.application.student_uid = response.data.uid;
-				$scope.application.selected_course = thisCourse.number + " - " + thisCourse.name;
+				$scope.application.selected_course = $scope.thisCourse.number + " - " + $scope.thisCourse.name;
 				$scope.application.addit_info = response.data.additional_details;
 				$scope.application.intl_student = response.data.international_student;
 				$scope.application.country_origin = response.data.origin_country;
@@ -51,12 +52,35 @@
 			})
 
 		$scope.updateApp = function() {
-			console.log("This fired");
+			if ($scope.applicationForm.$valid){
+
+				$scope.application.selected_semester = $scope.application.selected_semester.semester;
+				$scope.application.selected_year = $scope.application.selected_year.year;
+				$scope.application.selected_student_type = $scope.application.selected_student_type.stuType;
+				$scope.application.selected_course = $scope.thisCourse.number;
+
+				if ($scope.application.intl_student == "No") {	
+					$scope.application.country_origin = null;				
+				}
+
+				console.log($scope.application);
+				console.log($scope.applicationForm);
+				console.log($scope.thisAppId);
+
+				taApplicationFactory.updateApplication($scope.thisAppId, $scope.application)
+					.success(function(response){
+						$rootScope.appUpdateSuccess = response.message;
+						$location.path('/');
+					})
+					.error(function(data, status, headers, config){
+						console.log(data);
+					})
+			}			
 		}
 
 	};
 
-	AppShowController.$inject = ['$scope', '$rootScope', 'taApplicationFactory', '$routeParams'];
+	AppShowController.$inject = ['$scope', '$rootScope', 'taApplicationFactory', '$routeParams', '$location'];
 
 	angular.module('taApplication').controller('AppShowController', AppShowController);
 
