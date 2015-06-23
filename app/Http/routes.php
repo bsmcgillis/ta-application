@@ -11,10 +11,6 @@
 |
 */
 
-// Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
-
 Route::get('/', function() 
 {
 	return view('index');
@@ -25,12 +21,12 @@ Route::get('auth/csrf', function()
 	return Response::json(['csrfToken' => csrf_token()]);
 });
 
-Route::resource('ta_applications', 'ApplicationController');
+Route::resource('ta_applications', 'ApplicationController', ['except' => ['edit', 'create']]);
 
-Route::resource('courses', 'CourseController');
+Route::resource('courses', 'CourseController', ['only' => ['index']]);
 
 Route::group(array('prefix' => 'admin'), function(){
-	Route::resource('courses_list', 'AdminCourseController');
+	Route::resource('courses_list', 'AdminCourseController', ['only' => ['index']]);
 });
 
 Route::controllers([

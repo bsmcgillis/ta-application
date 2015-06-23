@@ -25,7 +25,6 @@ class ApplicationController extends Controller {
 	public function index()
 	{
 		$user = Auth::user();
-		// $applications = $user->applications;
 
 		$applications = DB::table('applications')
 			->join('courses', 'courses.number', '=', 'applications.requested_course')
@@ -34,25 +33,11 @@ class ApplicationController extends Controller {
 				'applications.requested_course', 'applications.semester', 'applications.year', 'courses.name')
 			->get();
 
-		// $applications = DB::table('applications')
-		// 	->whereRaw('applications.id = ?', [$user->id])
-		// 	->get();
-
 		if (!$applications){
 			return Response::json(['message' => "No applications for user $user->id"], 200);
 		}
 
 		return Response::json(['data' => $applications], 200);
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
 	}
 
 	/**
@@ -109,16 +94,6 @@ class ApplicationController extends Controller {
 		return Response::json(['data' => $application, 'code' => 200], 200);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
 
 	/**
 	 * Update the specified resource in storage.
