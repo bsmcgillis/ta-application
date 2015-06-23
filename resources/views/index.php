@@ -29,20 +29,36 @@
 		</header>
 		<div class="container">
 			<h1 ng-cloak class="text-center">Teaching Assistant Application</h1>
-			<div ng-show="loginSuccess && !logoutSuccess" class="bg-success col-lg-4" ng-cloak>
-				{{ loginSuccess }}
-			</div>
-			<div ng-show="logoutSuccess && !loginSuccess" class="bg-success col-lg-4" ng-cloak>
-				{{ logoutSuccess }}
-			</div>
-			<div ng-show="registrationSuccess" class="bg-success col-lg-4" ng-cloak>
-				{{ registrationSuccess }}
-			</div>
-			<div ng-show="appCreationSuccess" class="bg-success col-lg-4" ng-cloak>
-				{{ appCreationSuccess }}
-			</div>
-			<div ng-show="appUpdateSuccess" class="bg-success col-lg-4" ng-cloak>
-				{{ appUpdateSuccess }}
+			<div class="row">
+				<div class="col-lg-4">
+				</div>
+				<div ng-show="loginSuccess && !logoutSuccess" class="alert alert-success col-lg-4" ng-cloak>
+					<p class="text-center">
+						{{ loginSuccess }}
+					</p>
+				</div>
+				<div ng-show="logoutSuccess && !loginSuccess" class="alert alert-success col-lg-4" ng-cloak>
+					<p class="text-center">
+						{{ logoutSuccess }}
+					</p>					
+				</div>
+				<div ng-show="registrationSuccess" class="alert alert-success col-lg-4" ng-cloak>
+					<p class="text-center">
+						{{ registrationSuccess }}
+					</p>					
+				</div>
+				<div ng-show="appCreationSuccess" class="alert alert-success col-lg-4" ng-cloak>
+					<p class="text-center">
+						{{ appCreationSuccess }}
+					</p>					
+				</div>
+				<div ng-show="appUpdateSuccess" class="alert alert-success col-lg-4" ng-cloak>
+					<p class="text-center">
+						{{ appUpdateSuccess }}
+					</p>					
+				</div>
+				<div class="col-lg-4">
+				</div>
 			</div>
 		</div>
 		<div>

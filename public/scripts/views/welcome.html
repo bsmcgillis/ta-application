@@ -1,1 +1,47 @@
-<h2>Welcome page information</h2>
+<div class="row no-gutter">
+	<div class="col-lg-2">
+	</div>
+	<div class="panel panel-default col-lg-8">
+		<div class="panel-heading">
+			<h2 class="text-center">Welcome to the TA Application</h2>
+		</div>
+		<div class="panel-body">			
+			<div ng-show="!loggedIn" ng-cloak>
+				<p class="text-center">
+					To get started creating and maintaining your applications, please log in. <br />
+					If you do not have an account, you can create one using the Regsiter link in the menu above.
+				</p>
+			</div>
+			<div ng-show="loggedIn && role=='applicant'">
+				<p class="text-center">
+					To get started with an application, click on the TA Application Form link in the menu above.<br />
+					If you'd like to view or update your existing applications, click the Application Status link.
+				</p>
+			</div>
+			<div ng-show="loggedIn && role=='admin'">
+				<p class="text-center">
+					To manage the status of existing TA applications, click on the Manage Applications link above.
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-2">
+	</div>	
+</div>
+
+
+<!-- 	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="text-center">Welcome to the TA Application</h2>
+		</div>
+		<div class="panel-body">
+			
+				<div ng-show="!loggedIn">
+					<p>
+						To get started creating and maintaining your applications, please log in. If you do not have an account, you can create one using the Regsiter link in the menu above.
+					</p>
+				</div>	
+				
+		</div>
+	</div> -->
+

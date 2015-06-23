@@ -4,7 +4,7 @@
 
 		taApplicationFactory.clearSuccessInfo();
 
-		$scope.uidPattern = /[U|u]\d{7}/;
+		$scope.uidPattern = /^[U|u]\d{7}$/;
 
 		$scope.submitRegistration = function() {
 			if($scope.registrationForm.$valid){
@@ -21,9 +21,7 @@
 									$cookies.role = $rootScope.role = response.role;
 
 									$rootScope.csrf = $scope.registration._token;
-
 									$rootScope.registrationSuccess = response.message;
-
 									$location.path('/');
 								}
 								else {
@@ -49,9 +47,6 @@
 					.error(function(data, status, headers, config){
 						console.log(data);
 					})
-			}
-			else {
-				//Do something else
 			}
 		};
 	};

@@ -44,3 +44,10 @@
 {
 	color:gray;
 }
+
+/*This allows a panel to be within a row without the row's padding messing with the panel*/
+.no-gutter > [class*='col-'] 
+{
+	padding-right: 0;
+	padding-left: 0;
+}

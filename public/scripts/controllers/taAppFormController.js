@@ -23,11 +23,6 @@
 		$scope.submitApp = function() {
 
 			if($scope.applicationForm.$valid) {
-
-				//NOTE: So, intl_student - the radio button - doesn't get added to the scope unless it
-				//is actually selected by selecting yes and then selecting no. So, I'll have to check
-				//to see if it either doesn't exist or is set to no before looking for country of origin
-
 				$scope.application.selected_semester = $scope.application.selected_semester.semester;
 				$scope.application.selected_year = $scope.application.selected_year.year;
 				$scope.application.selected_course = $scope.application.selected_course.number;
@@ -43,7 +38,7 @@
 				taApplicationFactory.postApplication($scope.application)
 					.success(function(response){
 						$rootScope.appCreationSuccess = response.message;						
-						$location.path('/');
+						$location.path('/app_status');
 					})
 					.error(function(data, status, headers, config){
 						console.log(data);
