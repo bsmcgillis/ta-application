@@ -9,18 +9,12 @@
 				taApplicationFactory.getCSRF()
 					.success(function(response)
 					{
-
-						console.log(response);
-
 						$scope.user._token = response.csrfToken;
 						taApplicationFactory.postLogin($scope.user)
 							.success(function(response)
 							{
 								if(response.loggedIn)
 								{
-
-									console.log(response);
-
 									$cookies.loggedIn = $rootScope.loggedIn = true;
 									$cookies.userName = $rootScope.userName = response.name;
 									$cookies.uid = $rootScope.uid = response.uid;
@@ -47,9 +41,6 @@
 					{
 						console.log(data);
 					})
-			}
-			else {
-				//do something else
 			}
 		};
 	};

@@ -18,8 +18,6 @@
 
 		taApplicationFactory.getApplication($routeParams.appId)
 			.success(function(response) {
-				console.log(response);
-
 				data = response.data;
 				$scope.thisAppId = data.id;
 				$scope.thisCourse = $scope.courses[taApplicationFactory.getValueIndex($scope.courses, data.requested_course, "course")];
@@ -44,7 +42,6 @@
 
 		taApplicationFactory.getAllCourses()
 			.success(function(response){	
-				console.log(response.data);
 				$scope.courses = response.data;
 			})
 			.error(function(data, status, headers, config){
@@ -62,10 +59,6 @@
 				if ($scope.application.intl_student == "No") {	
 					$scope.application.country_origin = null;				
 				}
-
-				console.log($scope.application);
-				console.log($scope.applicationForm);
-				console.log($scope.thisAppId);
 
 				taApplicationFactory.updateApplication($scope.thisAppId, $scope.application)
 					.success(function(response){

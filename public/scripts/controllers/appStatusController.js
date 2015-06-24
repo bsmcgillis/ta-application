@@ -7,7 +7,6 @@
 
 		taApplicationFactory.getApplications()
 			.success(function(response){
-				console.log(response.data);
 
 				angular.forEach(response.data, function(value, key){
 					response.data[key].created_at = new Date(response.data[key].created_at.replace(/-/g,"/"));
@@ -20,13 +19,11 @@
 			})
 
 		$scope.deleteApp = function(appId) {
-			console.log("deleting app with id " + appId);
 
 			taApplicationFactory.deleteApplication(appId)
 				.success(function(response){
 					console.log(response);
 					if (response.code == 200){
-						console.log("Application deleted");
 						angular.forEach($scope.applications, function(value, key){
 							if ($scope.applications[key].id == appId){
 								$scope.applications.splice(key, 1);

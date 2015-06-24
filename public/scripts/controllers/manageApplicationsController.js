@@ -39,8 +39,6 @@
 
 		taApplicationFactory.getCoursesWithTAs()
 			.success(function(response){
-				console.log(response.data);
-
 				$scope.courses = response.data;
 			})
 			.error(function(data, status, headers, config){

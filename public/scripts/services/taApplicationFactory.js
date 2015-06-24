@@ -23,7 +23,6 @@
 			return $http.get('/auth/logout', user);
 		};
 
-
 		factory.postRegister = function(user) {
 			return $http.post('/auth/register', user);
 		};

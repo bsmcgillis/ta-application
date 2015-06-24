@@ -1,75 +1,39 @@
 <h2 class="text-center">Manage Applications</h2>
 
-<!-- <div class="panel panel-default">
-	<div class="panel-heading">
-		<h3>Course List</h3>
+<div class="well well-lg" ng-repeat="course in courses">
+	<div class="row">
+		<div class="col-lg-5">
+		<h2>{{ course.name }}</h2>
+		<h4>Course Number: {{ course.number }}</h4>
+		</div>
 	</div>
-	<div class="panel-body">
-	<p>Each course is listed below along with its potential TAs.</p>
+
+	<div>
+		<h3 class="text-center">TA Applicants for {{course.name}}</h3>
 	</div>
-</div> -->
-		<div class="well well-lg" ng-repeat="course in courses">
-			<div class="row">
-				<div class="col-lg-5">
-				<h2>{{ course.name }}</h2>
-				<h4>Course Number: {{ course.number }}</h4>
-				</div>
+
+	<div class="panel panel-default" ng-show="course.applications.length > 0"
+		ng-repeat="application in course.applications">
+		<div class="panel-heading">
+			<h3 class="text-center">{{ application.name }} {{ application.uid }}</h3>
+		</div>
+		<div class="row padding-top panel-body">
+			<div class="col-lg-3 padding-left">
+				<p>Email: {{application.email}}</p>
+				<p>Semester: {{application.semester}}</p>
+				<p>Year: {{application.year}}</p>
 			</div>
-
-			<div>
-				<h3 class="text-center">TA Applicants for {{course.name}}</h3>
+			<div class="col-lg-6">
+				<p>Additional Details:<br/>{{application.additional_details}}</p>
 			</div>
-
-			<div class="panel panel-default" ng-show="course.applications.length > 0"
-				ng-repeat="application in course.applications">
-				<div class="panel-heading">
-					<h3 class="text-center">{{ application.name }} {{ application.uid }}</h3>
-				</div>
-				<div class="row padding-top panel-body">
-					<div class="col-lg-3 padding-left">
-						<p>Email: {{application.email}}</p>
-						<p>Semester: {{application.semester}}</p>
-						<p>Year: {{application.year}}</p>
-					</div>
-					<div class="col-lg-6">
-						<p>Additional Details:<br/>{{application.additional_details}}</p>
-					</div>
-					<div class="col-lg-3">
-						<p>Recommendation: {{ recLevelText(application.recommendation_level) }} {{recText}} </p>
-						<select name="level_select" id="level_select" ng-model="newObject['app' + application.id]"		ng-options="rec_level.value as rec_level.level for rec_level in rec_level_options"
-							ng-change="optionSelected(application, newObject['app' + application.id])">
-								<option value="">Change Recommendation Level</option>
-						</select>
-						<!-- 
-							In here, I'll have to figure out some way to give each items its own select box
-							and have it call an update function when the select box changes. I'll have to
-							figure out how to give the called function the information from the select box
-							that actually changed.
-
-							I could possibly pass in the id of the application and the recommend level that it
-							changed to. 						
-
-						 -->
-					</div>
-				</div>
-			</div>	
-
-		<!-- <div class="panel panel-default" ng-show="course.applications.length > 0">
-				<div class="panel-heading">
-					<h3 class="text-center">TA Applicants for {{ course.name }}</h3>
-				</div>
-				<div class="row" ng-repeat="application in course.applications">
-					<div class="col-lg-3">
-						<p>Name: {{application.name}}</p>
-						<p>UID: {{application.uid}}</p>
-						<p>Email: {{application.email}}</p>
-						<p>Semester: {{application.semester}}</p>
-						<p>Year: {{application.year}}</p>
-					</div>
-					<div class="col-lg-5">
-						<p>Additional Details:<br/>{{application.additional_details}}</p>
-					</div>
-				</div>
-			</div> -->
-
-		</div>			
+			<div class="col-lg-3">
+				<p>Recommendation: {{ recLevelText(application.recommendation_level) }} {{recText}} </p>
+				<select name="level_select" id="level_select" ng-model="newObject['app' + application.id]"		
+				ng-options="rec_level.value as rec_level.level for rec_level in rec_level_options"
+					ng-change="optionSelected(application, newObject['app' + application.id])">
+						<option value="">Change Recommendation Level</option>
+				</select>
+			</div>
+		</div>
+	</div>	
+</div>			

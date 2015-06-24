@@ -8,8 +8,6 @@
 		taApplicationFactory.getLogout($scope.user)
 			.success(function(response){
 
-				console.log(response);
-
 				delete $cookies["loggedIn"];
 				delete $cookies["userName"];
 				delete $cookies["uid"];
@@ -19,15 +17,8 @@
 				delete $rootScope.uid;
 				delete $rootScope.role;
 
-				console.log("logged out. Cookies deleted");
-
 				taApplicationFactory.clearSuccessInfo();
-
 				$rootScope.logoutSuccess = response.message;
-
-				console.log($cookies.loggedIn);
-				console.log($cookies.userName);
-
 				$location.path('/');
 			})
 			.error(function(data, status, headers, config){
