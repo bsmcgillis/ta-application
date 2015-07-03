@@ -3,7 +3,8 @@
 		var factory = {};
 
 		factory.postLogin = function(user) {
-			return $http.post('/auth/login', user);
+			return $http.post('/ta-application/auth/login', user);
+			console.log("went to new url");
 		};
 
 		factory.getLoginInfo = function() {
@@ -20,35 +21,36 @@
 		};
 
 		factory.getLogout = function(user) {
-			return $http.get('/auth/logout', user);
+			return $http.get('/ta-application/auth/logout', user);
 		};
 
 		factory.postRegister = function(user) {
-			return $http.post('/auth/register', user);
+			return $http.post('/ta-application/auth/register', user);
 		};
 
 		factory.postApplication = function(application) {
-			return $http.post('/ta_applications', application);
+			return $http.post('/ta-application/ta_applications', application);
 		};		
 
 		factory.adminUpdateApplication = function(applicationId, appUpdate){
-			return $http.put('/ta_applications/' + applicationId, appUpdate);
+			return $http.put('/ta-application/ta_applications/' + applicationId, appUpdate);
 		};
 
 		factory.updateApplication = function(applicationId, appUpdate){
-			return $http.put('ta_applications/' + applicationId, appUpdate);
+			return $http.put('/ta-application/ta_applications/' + applicationId, appUpdate);
+			//This was missing a slash before ta_applications. I assume that was a typo
 		}
 
 		factory.deleteApplication = function(appId){
-			return $http.delete('/ta_applications/' + appId);
+			return $http.delete('/ta-application/ta_applications/' + appId);
 		}
 
 		factory.getApplications = function() {
-			return $http.get('/ta_applications');
+			return $http.get('/ta-application/ta_applications');
 		}
 
 		factory.getApplication = function(appId) {
-			return $http.get('/ta_applications/' + appId)
+			return $http.get('/ta-application/ta_applications/' + appId)
 		}
 
 		factory.updateRootScope = function() {
@@ -61,7 +63,7 @@
 		};
 
 		factory.getCSRF = function() {
-			return $http.get('/auth/csrf');
+			return $http.get('/ta-application/auth/csrf');
 		};
 
 		factory.clearSuccessInfo = function() {
@@ -83,11 +85,12 @@
 		};
 
 		factory.getAllCourses = function() {
-			return $http.get('/courses');
+			return $http.get('/ta-application/courses');
 		};
 
 		factory.getCoursesWithTAs = function() {
-			return $http.get('admin/courses_list');
+			return $http.get('/ta-application/admin/courses_list');
+			//This was also missing a slash at the beginning
 		};
 
 		factory.addSelectValuesToScope = function(scope){
