@@ -4,7 +4,6 @@
 
 		factory.postLogin = function(user) {
 			return $http.post('/ta-application/auth/login', user);
-			console.log("went to new url");
 		};
 
 		factory.getLoginInfo = function() {
@@ -39,19 +38,19 @@
 		factory.updateApplication = function(applicationId, appUpdate){
 			return $http.put('/ta-application/ta_applications/' + applicationId, appUpdate);
 			//This was missing a slash before ta_applications. I assume that was a typo
-		}
+		};
 
 		factory.deleteApplication = function(appId){
 			return $http.delete('/ta-application/ta_applications/' + appId);
-		}
+		};
 
 		factory.getApplications = function() {
 			return $http.get('/ta-application/ta_applications');
-		}
+		};
 
 		factory.getApplication = function(appId) {
 			return $http.get('/ta-application/ta_applications/' + appId)
-		}
+		};
 
 		factory.updateRootScope = function() {
 			if ($cookies.loggedIn) {
@@ -110,7 +109,7 @@
 				{stuType : "Undergraduate"},
 				{stuType : "Graduate"}
 			];	
-		}
+		};
 
 		factory.getValueIndex = function(valArray, thisValue, category){
 			

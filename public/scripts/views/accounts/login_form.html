@@ -33,7 +33,7 @@
 						<input type="password" class="form-control" name="password" data-ng-model="user.password" 
 							ng-keyup="submitted=false" required><br />
 					</div>
-					<div ng-messages="loginForm.email.$error" class="text-danger" ng-if="submitted">
+					<div ng-messages="loginForm.password.$error" class="text-danger" ng-if="submitted">
 						<div ng-message="required">*Password is required</div>
 					</div>
 				</div>
